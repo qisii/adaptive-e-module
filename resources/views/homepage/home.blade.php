@@ -27,7 +27,7 @@
             <a href="{{ route('login') }}" class="text-[#111827] font-bold mx-6 hover:text-blue-700 transition-colors duration-200">
                 Login
             </a>
-            <a href="{{ route('register') }}" class="text-[#111827] font-bold mx-6 hover:text-blue-700 transition-colors duration-200 underline underline-offset-6">
+            <a href="{{ route('register') }}" class="text-[#111827] font-bold mx-6 hover:text-blue-700 transition-colors duration-200 underline underline-offset-10">
                 Signup
             </a>
         </div>
