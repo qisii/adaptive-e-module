@@ -15,7 +15,7 @@
             <p class="text-[#6B7280] text-[20px] mb-8" style="font-family: 'Inter', sans-serif;">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis exercitationem est, eligendi velit suscipit minus!
             </p>
-            <a href="#"
+            <a href="{{ route('register') }}"
                 class="inline-flex items-center px-10 py-4 bg-gradient-to-r from-blue-500 to-blue-900 bg-[length:150%_150%] bg-left text-white text-lg rounded-lg transition-all duration-500 ease-in-out w-fit hover:bg-right"
                 style="font-family: 'Inter', sans-serif;">
                 Get Started
@@ -26,7 +26,7 @@
         <div class="w-1/2">
             <div class="flex flex-col h-full gap-4"> 
                 <div class="flex flex-1 gap-4">
-                    <div class="w-[60%] rounded-lg bg-cover" style="background-image: url('{{ asset('assets/images/banner1.jpg') }}');"></div>
+                    <div class="w-[60%] rounded-lg bg-contain bg-no-repeat bg-right" style="background-image: url('{{ asset('assets/images/logo.png') }}');"></div>
                     <div class="w-[40%] h-50 rounded-lg bg-cover mt-auto" style="background-image: url('{{ asset('assets/images/banner2.jpg') }}');"></div>
                 </div>
                 <div class="flex flex-1 gap-4">
@@ -113,7 +113,7 @@
             <p class="w-[70%] mx-auto text-justify text-[16px] text-[#E5E7EB] mb-6 leading-relaxed" style="font-family: 'Inter', sans-serif;">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla dolore consectetur eos perferendis ad dicta fugit, ducimus hic unde alias dignissimos cum aliquid vero aut! Error exercitationem ullam molestias officia.
             </p>
-            <a href="#"
+            <a href="{{ route('register') }}"
                 class="inline-flex items-center px-10 py-4 bg-gradient-to-r from-blue-500 to-blue-900 bg-[length:150%_150%] bg-left rounded-lg text-white text-lg transition-all duration-500 ease-in-out w-fit hover:bg-right"
                 style="font-family: 'Inter', sans-serif;">
                 Get Started
