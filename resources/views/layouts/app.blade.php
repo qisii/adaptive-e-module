@@ -40,6 +40,8 @@
                 </div>
             </div>
 
+            {{-- sample --}}
+
             <nav class="flex flex-col space-y-2" style="font-family: 'Inter', sans-serif;">
                 <a href="#" 
                 class="flex items-center gap-3 text-[14px] text-[#E5E7EB] px-4 py-3 rounded-lg hover:bg-[#0F2250] hover:text-blue-300 active:text-blue-300 transition-all duration-200">
