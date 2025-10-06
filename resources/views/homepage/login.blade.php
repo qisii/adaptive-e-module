@@ -38,7 +38,7 @@
                     </h2>
 
                     <!-- Tabs -->
-                    <div class="flex justify-center mb-8 space-x-10" style="font-family: 'Poppins', sans-serif;">
+                    <div class="flex justify-center mb-5 space-x-10" style="font-family: 'Poppins', sans-serif;">
                         <button type="button"
                             class="text-[16px] font-semibold pb-2 transition-all duration-200 border-b-3"
                             :class="role === 'student' ? 'border-[#1E40AF] text-[#1E40AF]' : 'border-transparent text-[#6B7280]'"
@@ -53,7 +53,7 @@
                         </button>
                     </div>
 
-                    <div class="relative overflow-hidden mb-6 h-[130px] md:h-[150px]">
+                    <div class="relative overflow-hidden mb-0 h-[130px] md:h-[150px]">
                         <!-- Student panel (absolute so it doesn't affect layout) -->
                         <div
                         x-show="role === 'student'"
@@ -128,7 +128,7 @@
                         x-transition:leave="transition ease-in duration-300"
                         x-transition:leave-start="opacity-100 translate-y-0"
                         x-transition:leave-end="opacity-0 translate-y-2"
-                        class="mt-6 flex justify-center"
+                        class="mt-4 flex justify-center"
                     >
                         <div class="w-10 h-10 bg-[#DBEAFE] rounded-full flex items-center justify-center">
                             <i class="ri-google-fill text-[#3B82F6] text-[20px]"></i>
@@ -136,8 +136,8 @@
                     </div>
 
                     <p 
-                        class="text-[14px] font-poppins text-[#6B7280] text-center mt-6 transition-all duration-500 ease-in-out transform"
-                        :class="role === 'teacher' ? 'translate-y-4' : 'translate-y-0'"
+                        class="text-[14px] font-poppins text-[#6B7280] text-center mt-4 transition-all duration-500 ease-in-out transform"
+                        :class="role === 'teacher' ? 'translate-y-0' : 'translate-y-0'"
                         style="font-family: 'Poppins', sans-serif;"
                     >
                         Don't have an account? 

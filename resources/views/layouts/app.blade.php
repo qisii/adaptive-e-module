@@ -70,10 +70,15 @@
 
         </div>
 
-        <div class="p-6 border-t border-blue-900">
+        <div class="py-6 px-2 border-t border-blue-900">
+            {{-- <a href="{{ route('register') }}"
+                class="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-blue-500 to-blue-900 bg-[length:150%_150%] bg-left text-white rounded-lg transition-all duration-500 ease-in-out hover:bg-right" style="font-family: 'Inter', sans-serif">
+                <i class="ri-arrow-right-circle-line"></i>
+                Logout
+            </a> --}}
             <a href="{{ route('register') }}"
-                class="block text-center py-2 bg-gradient-to-r from-blue-500 to-blue-900 bg-[length:150%_150%] bg-left text-white rounded-lg transition-all duration-500 ease-in-out hover:bg-right" style="font-family: 'Inter', sans-serif">
-                <i class="ri-shut-down-line"></i>
+                class="flex items-center gap-3 px-4 py-3 text-[14px] rounded-lg hover:bg-[#0F2250] hover:text-blue-300 active:text-blue-300 transition-all duration-200" style="font-family: 'Inter', sans-serif">
+                <i class="ri-arrow-right-circle-line"></i>
                 Logout
             </a>
         </div>
@@ -84,12 +89,13 @@
         <!-- Header -->
         <header class="bg-white shadow-sm py-6 px-8 flex items-center justify-between">
             <h2 class="text-xl font-semibold text-[#6B7280]" style="font-family: 'Poppins', sans-serif;">
-                Profile
+                @yield('header')
             </h2>
         </header>
 
         <!-- Page Content -->
-        <div class="flex-1 mt-6 mx-8">
+        {{-- mt-6 mx-8 --}}
+        <div class="flex-1 m-0">
             @yield('content')
         </div>
     </main>
