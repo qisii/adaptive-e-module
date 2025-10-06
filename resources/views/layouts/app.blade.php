@@ -25,36 +25,69 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body 
-    class="bg-cover bg-no-repeat bg-center text-gray-900 min-h-screen m-0 p-0"
-    style="background-image: url('{{ asset('assets/images/bg-img.png') }}');"
+    class="bg-[#F9FAFB] text-gray-900 min-h-screen m-0 p-0 flex"
 >
-    <nav class="bg-white shadow-sm py-4">
-        <div class="w-[85%] mx-auto flex items-center justify-between">
-            <div class="w-1/2">
-                <h1 class="text-2xl font-bold text-blue-900" style="font-family: 'Poppins', sans-serif;">
-                    {{ config('app.name') }}
-                </h1>
-            </div>
-            <div class="w-1/2 text-right flex justify-end items-center" style="font-family: 'Inter', sans-serif;">
-                <a href="#home" class="text-gray-700 hover:text-blue-700 transition-colors duration-200 mx-2">Home</a>
-                <a href="#about" class="text-gray-700 hover:text-blue-700 transition-colors duration-200 mx-2">About</a>
-                {{-- <a href="#" class="text-gray-700 hover:text-blue-700 transition-colors duration-200 mx-2">Contact</a> --}}
-                <a href="#"
-                   class="px-6 py-3 border border-blue-800 text-blue-800 rounded-lg hover:bg-blue-50 transition duration-200 mx-2">
-                   Sign in
-                </a>
-                <a href="#"
-                    class="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-900 bg-[length:150%_150%] bg-left text-white rounded-lg transition-all duration-500 ease-in-out mx-2 hover:bg-right">
-                    Get Started
-                    <i class="ri-arrow-right-line ml-3"></i>
-                </a>
-            </div>
-        </div>
-    </nav>
+    <aside class="w-64 bg-[#0B1A3F] min-h-screen text-white flex flex-col justify-between">
+        <div class="py-6 px-2">
+            <h1 class="text-xl text-center font-semibold mb-8" style="font-family: 'Poppins', sans-serif;">
+                My Dashboard
+            </h1>
 
-    <main class="">
-        <div class="w-full mt-16 mx-auto">
-            {{-- Page content here --}}
+            <!-- Profile picture -->
+            <div class="flex justify-center mb-8">
+                <div class="w-24 h-24 rounded-full bg-[#0F2250] flex items-center justify-center overflow-hidden">
+                    <i class="ri-image-line text-[#E5E7EB] text-3xl"></i>
+                </div>
+            </div>
+
+            <nav class="flex flex-col space-y-2" style="font-family: 'Inter', sans-serif;">
+                <a href="#" 
+                class="flex items-center gap-3 text-[14px] text-[#E5E7EB] px-4 py-3 rounded-lg hover:bg-[#0F2250] hover:text-blue-300 active:text-blue-300 transition-all duration-200">
+                    <i class="ri-user-line text-[16px]"></i>
+                    Account
+                </a>
+
+                <a href="#" 
+                class="flex items-center gap-3 text-[14px] text-[#E5E7EB] px-4 py-3 rounded-lg hover:bg-[#0F2250] hover:text-blue-300 active:text-blue-300 transition-all duration-200">
+                    <i class="ri-folder-3-line text-[16px]"></i>
+                    Module
+                </a>
+
+                <a href="#" 
+                class="flex items-center gap-3 text-[14px] text-[#E5E7EB] px-4 py-3 rounded-lg hover:bg-[#0F2250] hover:text-blue-300 active:text-blue-300 transition-all duration-200">
+                    <i class="ri-table-line text-[16px]"></i>
+                    Grade
+                </a>
+
+                <a href="#" 
+                class="flex items-center gap-3 text-[14px] text-[#E5E7EB] px-4 py-3 rounded-lg hover:bg-[#0F2250] hover:text-blue-300 active:text-blue-300 transition-all duration-200">
+                    <i class="ri-chat-1-line text-[16px]"></i>
+                    Comments & Suggestions
+                </a>
+            </nav>
+
+        </div>
+
+        <div class="p-6 border-t border-blue-900">
+            <a href="{{ route('register') }}"
+                class="block text-center py-2 bg-gradient-to-r from-blue-500 to-blue-900 bg-[length:150%_150%] bg-left text-white rounded-lg transition-all duration-500 ease-in-out hover:bg-right" style="font-family: 'Inter', sans-serif">
+                <i class="ri-shut-down-line"></i>
+                Logout
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="flex-1 flex flex-col">
+        <!-- Header -->
+        <header class="bg-white shadow-sm py-6 px-8 flex items-center justify-between">
+            <h2 class="text-xl font-semibold text-[#6B7280]" style="font-family: 'Poppins', sans-serif;">
+                Profile
+            </h2>
+        </header>
+
+        <!-- Page Content -->
+        <div class="flex-1 mt-6 mx-8">
             @yield('content')
         </div>
     </main>

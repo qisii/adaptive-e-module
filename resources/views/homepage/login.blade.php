@@ -120,26 +120,29 @@
 
                     
                     <!-- Google icon (only for Teacher) -->
-                <div 
-                    x-show="role === 'teacher'" 
-                    x-transition:enter="transition ease-out duration-500"
-                    x-transition:enter-start="opacity-0 translate-y-2"
-                    x-transition:enter-end="opacity-100 translate-y-0"
-                    x-transition:leave="transition ease-in duration-300"
-                    x-transition:leave-start="opacity-100 translate-y-0"
-                    x-transition:leave-end="opacity-0 translate-y-2"
-                    class="mt-6 flex justify-center"
-                >
-                    <div class="w-10 h-10 bg-[#DBEAFE] rounded-full flex items-center justify-center">
-                        <i class="ri-google-fill text-[#3B82F6] text-[20px]"></i>
+                    <div 
+                        x-show="role === 'teacher'" 
+                        x-transition:enter="transition ease-out duration-500"
+                        x-transition:enter-start="opacity-0 translate-y-2"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-300"
+                        x-transition:leave-start="opacity-100 translate-y-0"
+                        x-transition:leave-end="opacity-0 translate-y-2"
+                        class="mt-6 flex justify-center"
+                    >
+                        <div class="w-10 h-10 bg-[#DBEAFE] rounded-full flex items-center justify-center">
+                            <i class="ri-google-fill text-[#3B82F6] text-[20px]"></i>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Signup text -->
-                <p class="text-[14px] font-poppins text-[#6B7280] text-center mt-6" style="font-family: 'Poppins', sans-serif;">
-                    Don't have an account? 
-                    <a href="{{ route('register') }}" class="text-[#1E40AF] font-bold">Signup</a>
-                </p>
+                    <p 
+                        class="text-[14px] font-poppins text-[#6B7280] text-center mt-6 transition-all duration-500 ease-in-out transform"
+                        :class="role === 'teacher' ? 'translate-y-4' : 'translate-y-0'"
+                        style="font-family: 'Poppins', sans-serif;"
+                    >
+                        Don't have an account? 
+                        <a href="{{ route('register') }}" class="text-[#1E40AF] font-bold">Signup</a>
+                    </p>
                 </form>
             </div>
         </div>
