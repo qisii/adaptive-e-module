@@ -30,9 +30,9 @@
             </div>
         </div>
         
-        <div class="w-1/2 flex justify-center items-center">
-            <div class="w-[90%] h-full rounded-lg p-6">
-                <form class="mt-10 px-28 w-full" x-data="{ role: 'student' }" @keyup.enter="$el.querySelector('button[type=submit]').click()">
+        <div class="w-1/2 flex justify-center items-center p-6">
+            <div class="w-[90%] h-full rounded-lg">
+                <form class="mt-10 px-24 w-full" x-data="{ role: 'student' }" @keyup.enter="$el.querySelector('button[type=submit]').click()">
                     <h2 class="text-[28px] font-bold text-[#111827] text-center mb-10" style="font-family: 'Poppins', sans-serif;">
                         Login
                     </h2>
@@ -63,7 +63,7 @@
                         x-transition:leave="transition ease-in duration-200"
                         x-transition:leave-start="opacity-100 translate-y-0"
                         x-transition:leave-end="opacity-0 -translate-y-2"
-                        class="absolute inset-0 flex flex-col justify-center px-0"
+                        class="absolute inset-0 flex flex-col justify-center px-2 pt-1"
                         >
                             <div class="mb-4">
                                 <input type="text"
@@ -91,7 +91,7 @@
                         x-transition:leave="transition ease-in duration-200"
                         x-transition:leave-start="opacity-100 translate-y-0"
                         x-transition:leave-end="opacity-0 -translate-y-2"
-                        class="absolute inset-0 flex flex-col justify-center px-0"
+                        class="absolute inset-0 flex flex-col justify-center px-2 pt-1"
                         >
                             <div class="mb-4">
                                 <input type="email"
@@ -112,12 +112,14 @@
                     </div>
 
                     <!-- Submit -->
-                    <button type="submit"
+                    <div class="px-2">
+                        <button type="submit"
                             class="w-full py-4 bg-[#1E40AF] text-[#F9FAFB] font-semibold rounded-md hover:bg-blue-900 transition duration-200"
                             style="font-family: 'Inter', sans-serif; border-radius: 42px">
-                        Login
-                    </button>
-
+                            Login
+                        </button>
+                    </div>
+                
                     
                     <!-- Google icon (only for Teacher) -->
                     <div 
