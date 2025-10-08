@@ -1,0 +1,6 @@
+body {
+    background-image: url("{{ asset('assets/images/bg-img.png') }}");
+    background-position: center;
+    background-size: cover;
+}
+
