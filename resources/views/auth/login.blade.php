@@ -3,7 +3,7 @@
 @section('title', 'Login')
 
 @section('image')
-    <img src="{{ asset('assets/images/login-img.png') }}" 
+    <img src="{{ asset('assets/images/login2.png') }}" 
         alt="Login" 
         class="absolute bottom-[-14%] left-[26%] transform -translate-x-1/2 w-[400px] z-0">
 @endsection
@@ -90,7 +90,7 @@
 
                         <input type="hidden" name="role_id" value="2">
 
-                        <div class="px-2">
+                        <div class="px-1">
                             <button type="submit"
                                 class="w-full py-4 bg-[#1E40AF] text-[#F9FAFB] font-semibold rounded-full hover:bg-blue-900 transition duration-200"
                                 style="font-family: 'Inter', sans-serif;">
@@ -131,7 +131,7 @@
 
                         <input type="hidden" name="role_id" value="1">
 
-                        <div class="px-2">
+                        <div class="px-1">
                             <button type="submit"
                                 class="w-full py-4 bg-[#1E40AF] text-[#F9FAFB] font-semibold rounded-full hover:bg-blue-900 transition duration-200"
                                 style="font-family: 'Inter', sans-serif;">

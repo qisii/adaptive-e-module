@@ -3,9 +3,9 @@
 @section('title', 'Signup')
 
 @section('image')
-    <img src="{{ asset('assets/images/signup-img.png') }}" 
+    <img src="{{ asset('assets/images/signup2.png') }}" 
         alt="Login" 
-        class="absolute bottom-[-14%] left-[25%] transform -translate-x-1/2 w-[400px] z-0">
+        class="absolute bottom-[-14%] left-[26%] transform -translate-x-1/2 w-[400px] z-[15]">
 @endsection
 
 @section('content')
@@ -17,7 +17,7 @@
                     class="absolute top-[10%] left-[10%] w-[120px]">
                 
                 <img src="{{ asset('assets/images/stair.png') }}" alt="Periwinkle" 
-                    class="absolute top-[20%] left-[70%] w-[120px]">
+                    class="absolute top-[20%] left-[70%] w-[120px] ">
                 
                 <img src="{{ asset('assets/images/tube.png') }}" alt="Tube" 
                     class="absolute top-[70%] right-[10%] w-[80px]">
@@ -97,7 +97,7 @@
 
                             <input type="hidden" name="role_id" value="2">
 
-                            <div class="px-2">
+                            <div class="px-1">
                                 <button type="submit"
                                     class="w-full py-4 bg-[#1E40AF] text-[#F9FAFB] font-semibold rounded-full hover:bg-blue-900 transition duration-200"
                                     style="font-family: 'Inter', sans-serif;">
@@ -147,7 +147,7 @@
 
                             <input type="hidden" name="role_id" value="1">
 
-                            <div class="px-2">
+                            <div class="px-1">
                                 <button type="submit"
                                     class="w-full py-4 bg-[#1E40AF] text-[#F9FAFB] font-semibold rounded-full hover:bg-blue-900 transition duration-200"
                                     style="font-family: 'Inter', sans-serif;">

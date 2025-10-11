@@ -43,13 +43,13 @@
                     <a href="#about" class="text-gray-700 hover:text-blue-700 transition-colors duration-200 mx-2">About</a>
 
                     @auth
-                        {{-- ✅ If user is logged in --}}
+                        {{-- If user is logged in --}}
                         <a href="{{ url('/profile/show') }}"
                             class="px-6 py-3 border border-blue-800 text-blue-800 rounded-lg hover:bg-blue-50 transition duration-200 mx-2">
                             Dashboard
                         </a>
                     @else
-                        {{-- ✅ If user is a guest --}}
+                        {{-- If user is a guest --}}
                         <a href="{{ route('login') }}"
                             class="px-6 py-3 border border-blue-800 text-blue-800 rounded-lg hover:bg-blue-50 transition duration-200 mx-2">
                             Login
@@ -57,7 +57,7 @@
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}"
-                                class="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-900 bg-[length:150%_150%] bg-left text-white rounded-lg transition-all duration-500 ease-in-out mx-2 hover:bg-right">
+                                class="px-6 py-3 border border-blue-500 bg-gradient-to-r from-blue-500 to-blue-900 bg-[length:150%_150%] bg-left text-white rounded-lg transition-all duration-500 ease-in-out mx-2 hover:bg-right">
                                 Get Started
                                 <i class="ri-arrow-right-line ml-3"></i>
                             </a>

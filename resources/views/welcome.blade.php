@@ -29,7 +29,7 @@
             <div class="flex flex-col h-full"> 
                 <div class="flex flex-1">
                     <div class="w-[90%] h-[80%] mx-auto flex items-center justify-center rounded-lg">
-                        <img src="{{ asset('assets/images/logo-md.png') }}" 
+                        <img src="{{ asset('assets/images/logo-md2.png') }}" 
                             alt="Logo" 
                             class="w-[80%] object-contain ms-auto mt-30">
                     </div>
