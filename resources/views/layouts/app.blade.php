@@ -20,117 +20,40 @@
     {{-- Remix Icons --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    {{-- Alphine JS --}}
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> 
 </head>
 <body 
-    class="bg-[#F9FAFB] text-gray-900 min-h-screen m-0 p-0 flex"
+    x-data="{ sidebarOpen: false }" 
+    class="bg-[#F9FAFB] text-gray-900 min-h-screen flex m-0 p-0"
 >
     <!-- Sidebar -->
-    <aside class="fixed top-0 left-0 w-64 h-full bg-[#0B1A3F] text-white flex flex-col justify-between">
-        <div class="py-6 px-2">
-            <h1 class="text-xl text-center font-semibold mb-8" style="font-family: 'Poppins', sans-serif;">
-                My Dashboard
-            </h1>
+    <x-new-components.sidebar />
 
-            <!-- Profile picture -->
-            <div class="flex justify-center mb-8">
-                <div class="w-24 h-24 rounded-full bg-[#0F2250] flex items-center justify-center overflow-hidden">
-                    <i class="ri-image-line text-[#E5E7EB] text-3xl"></i>
-                </div>
-            </div>
-
-            <!-- Navigation -->
-            <nav class="flex flex-col space-y-2" style="font-family: 'Inter', sans-serif;">
-                {{-- 
-                    <a href="{{ route('profile.show') }}" 
-                    class="flex items-center gap-3 text-[14px] px-4 py-3 rounded-lg transition-all duration-200 
-                            {{ request()->routeIs('profile.show') 
-                                ? 'bg-[#0F2250] text-blue-300' 
-                                : 'text-[#E5E7EB] hover:bg-[#0F2250] hover:text-blue-300 active:text-blue-300' }}">
-                        <i class="ri-user-line text-[16px]"></i>
-                        Account
-                    </a>
-                --}}
-                <a href="{{ route('profile.show') }}" 
-                class="flex items-center gap-3 text-[14px] px-4 py-3 rounded-lg transition-all duration-200 
-                        text-[#E5E7EB] hover:bg-[#0F2250] hover:text-blue-300 @yield('account-active')">
-                    <i class="ri-user-line text-[16px]"></i>
-                    Account
-                </a>
-
-                {{-- {{ route('module.index') }} --}}
-                <a href="" 
-                    class="flex items-center gap-3 text-[14px] px-4 py-3 rounded-lg transition-all duration-200 
-                        text-[#E5E7EB] hover:bg-[#0F2250] hover:text-blue-300 @yield('dashboard-active')">
-                    <i class="ri-folder-3-line text-[16px]"></i>
-                    Modules
-                </a>
-
-                {{-- {{ route('grade.index') }} --}}
-                <a href="" 
-                    class="flex items-center gap-3 text-[14px] px-4 py-3 rounded-lg transition-all duration-200 
-                        text-[#E5E7EB] hover:bg-[#0F2250] hover:text-blue-300 @yield('grade-active')">
-                    <i class="ri-table-line text-[16px]"></i>
-                    Grades
-                </a>
-
-                {{-- {{ route('grade.index') }} --}}
-                <a href="" 
-                    class="flex items-center gap-3 text-[14px] px-4 py-3 rounded-lg transition-all duration-200 
-                        text-[#E5E7EB] hover:bg-[#0F2250] hover:text-blue-300 @yield('data-active')">
-                    <i class="ri-table-line text-[16px]"></i>
-                    Data
-                </a>
-
-                {{-- {{ route('grade.index') }} --}}
-                <a href="" 
-                    class="flex items-center gap-3 text-[14px] px-4 py-3 rounded-lg transition-all duration-200 
-                        text-[#E5E7EB] hover:bg-[#0F2250] hover:text-blue-300 @yield('analysis-active')">
-                    <i class="ri-bar-chart-line"></i>
-                    Analysis
-                </a>
-
-                {{-- {{ route('comment-suggestion.index') }} --}}
-                <a href="" 
-                    class="flex items-center gap-3 text-[14px] px-4 py-3 rounded-lg transition-all duration-200 
-                        text-[#E5E7EB] hover:bg-[#0F2250] hover:text-blue-300 @yield('comment-active')">
-                    <i class="ri-chat-1-line text-[16px]"></i>
-                    Comments & Suggestions
-                </a>
-            </nav>
-        </div>
-
-        <!-- Logout -->
-        <div class="py-6 px-2 border-t border-blue-900">
-            <a href="#"
-                class="flex items-center gap-3 px-4 py-3 text-[14px] rounded-lg hover:bg-[#0F2250] hover:text-blue-300 active:text-blue-300 transition-all duration-200" style="font-family: 'Inter', sans-serif">
-                <i class="ri-question-line"></i>
-                Help
-            </a>
-            <form method="POST" action="{{ route('logout') }}" class="flex items-center gap-3 text-[14px] rounded-lg hover:bg-[#0F2250] hover:text-[#EF4444] active:text-blue-300 transition-all duration-200"
-                style="font-family: 'Inter', sans-serif">
-                @csrf
-                
-                <button class="px-4 py-3">
-                    <i class="ri-arrow-right-circle-line mr-2"></i>
-                    Logout
-                </button>
-            </form>
-        </div>
-    </aside>
-
-    <!-- Main content -->
-    <main class="flex-1 flex flex-col ml-64 overflow-y-auto">
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col overflow-y-auto">
         <!-- Header -->
-        <header class="bg-white shadow-sm py-6 px-8 flex items-center justify-between sticky top-0 z-10">
-            <h2 class="text-xl font-semibold text-[#6B7280]" style="font-family: 'Poppins', sans-serif;">
-                @yield('header')
-            </h2>
+        <header class="bg-white shadow-sm py-5 px-9 flex items-center justify-between sticky top-0 z-10">
+            <div class="flex items-center gap-3">
+                <!-- Burger Button (Visible on Mobile/Tablet only) -->
+                <button 
+                    @click="sidebarOpen = !sidebarOpen" 
+                    class="lg:hidden bg-[#0B1A3F] text-white p-2 rounded-md focus:outline-none"
+                >
+                    <i class="ri-menu-line text-xl"></i>
+                </button>
+                
+                <h2 class="text-lg md:text-xl font-semibold text-[#6B7280] font-[Poppins]">
+                    @yield('header')
+                </h2>
+            </div>
         </header>
 
         <!-- Page Content -->
-        <div class="flex-1 m-0 bg-[#F3F4F6]">
+        <div class="flex-1 bg-[#F3F4F6]">
             @yield('content')
         </div>
     </main>
 </body>
+
 </html>

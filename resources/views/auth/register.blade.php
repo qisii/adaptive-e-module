@@ -3,38 +3,52 @@
 @section('title', 'Signup')
 
 @section('image')
+<!-- Desktop: large login image at center-left -->
     <img src="{{ asset('assets/images/signup2.png') }}" 
         alt="Login" 
-        class="absolute bottom-[-14%] left-[26%] transform -translate-x-1/2 w-[400px] z-[15]">
+        class="hidden lg:block absolute bottom-[-15%] left-[26%] transform -translate-x-1/2 w-[400px] z-15">
+
+    <!-- Tablet & Mobile: smaller login image bottom-left -->
+    <img src="{{ asset('assets/images/signup2.png') }}" 
+        alt="Login" 
+        class="md:w-[220px] md:block lg:hidden absolute bottom-[-17%] left-[4%] hidden z-15">
 @endsection
 
 @section('content')
-    <div class="w-full flex min-h-[80vh] relative">
-        <div class="w-1/2 flex justify-center items-center relative">
-            <div class="w-[90%] h-full rounded-lg p-6 relative overflow-hidden">
-                
+    <div class="w-full flex flex-col lg:flex-row min-h-[80vh] md:h-auto relative">
+        <div class="w-full lg:w-1/2 flex justify-center items-center relative order-1 lg:order-none">
+            <div class="w-[90%] h-full rounded-lg p-6 relative overflow-hidden flex justify-center">
                 <img src="{{ asset('assets/images/star.png') }}" alt="Star" 
-                    class="absolute top-[10%] left-[10%] w-[120px]">
-                
+                    class="hidden lg:block absolute top-[10%] left-[10%] w-[120px]">
                 <img src="{{ asset('assets/images/stair.png') }}" alt="Periwinkle" 
-                    class="absolute top-[20%] left-[70%] w-[120px] ">
-                
+                    class="hidden lg:block absolute top-[20%] left-[70%] w-[120px] ">
                 <img src="{{ asset('assets/images/tube.png') }}" alt="Tube" 
-                    class="absolute top-[70%] right-[10%] w-[80px]">
-
+                    class="hidden lg:block absolute top-[70%] right-[10%] w-[80px]">
                 <img src="{{ asset('assets/images/star.png') }}" alt="Star" 
-                    class="absolute top-[85%] right-[10%] w-[20px]">
-
+                    class="hidden lg:block absolute top-[85%] right-[10%] w-[20px]">
                 <img src="{{ asset('assets/images/periwrinkle.png') }}" alt="Periwinkle" 
-                    class="absolute top-[85%] right-[75%] w-[80px]">
+                    class="hidden lg:block absolute top-[85%] right-[75%] w-[80px]">
             </div>
         </div>
+        {{-- Tablet & Mobile Layout --}}
+        <img src="{{ asset('assets/images/star.png') }}" alt="Star" 
+            class="block lg:hidden absolute top-[10%] left-[10%] md:w-[120px]  w-[60px]">
+        <img src="{{ asset('assets/images/stair.png') }}" alt="Periwinkle" 
+            class="block lg:hidden absolute top-[10%] left-[70%] md:left-[82%] w-[60px] ">
+        <img src="{{ asset('assets/images/tube.png') }}" alt="Tube" 
+            class="block lg:hidden absolute top-[70%] right-[10%] w-[80px]">
+        <img src="{{ asset('assets/images/periwrinkle.png') }}" alt="Star" 
+            class="block lg:hidden absolute top-[85%] right-[10%] w-[100px]">
+        <img src="{{ asset('assets/images/star.png') }}" alt="Periwinkle" 
+            class="block lg:hidden absolute top-[95%] right-[50%] w-[50px]">
         
-        <div class="w-1/2 flex justify-center items-center">
-            <div class="w-[90%] h-full rounded-lg p-6 pt-0">
-                <div x-data="{ role: 'student' }" class="mt-10 px-24 w-full">
+        {{-- Register Form --}}
+        <div class="w-full lg:w-1/2 flex justify-center items-center mt-2 md:mt-4 lg:mt-0 z-15">
+        <div class="w-[90%] h-full rounded-lg p-6 pt-0">
+            <div x-data="{ role: 'student' }" class="mt-6 md:mt-10 px-4 md:px-16 lg:px-24 w-full">
                     
-                    <h2 class="text-[28px] font-bold text-[#111827] text-center mb-10" style="font-family: 'Poppins', sans-serif;">
+                    <h2 class="text-[24px] md:text-[28px] font-bold text-[#111827] text-center mb-8 md:mb-10" 
+                        style="font-family: 'Poppins', sans-serif;">
                         Create an account
                     </h2>
 
@@ -54,7 +68,7 @@
                         </button>
                     </div>
 
-                    <div class="relative overflow-hidden mb-0 h-[300px] md:h-[350px]">
+                    <div class="relative overflow-hidden mb-0 h-[360px] md:h-[350px]">
                         
                         <!-- STUDENT FORM -->
                         <form 
@@ -158,7 +172,9 @@
                             <!-- Google icon (Teacher only) -->
                             <div class="mt-4 flex justify-center">
                                 <div class="w-10 h-10 bg-[#DBEAFE] rounded-full flex items-center justify-center">
-                                    <i class="ri-google-fill text-[#3B82F6] text-[20px]"></i>
+                                    <a href="{{ route('auth.google') }}">
+                                        <i class="ri-google-fill text-[#3B82F6] text-[20px]"></i>
+                                    </a>
                                 </div>
                             </div>
                         </form>

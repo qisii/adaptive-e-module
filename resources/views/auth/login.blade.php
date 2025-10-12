@@ -3,33 +3,50 @@
 @section('title', 'Login')
 
 @section('image')
+    <!-- Desktop: large login image at center-left -->
     <img src="{{ asset('assets/images/login2.png') }}" 
         alt="Login" 
-        class="absolute bottom-[-14%] left-[26%] transform -translate-x-1/2 w-[400px] z-0">
+        class="hidden lg:block absolute bottom-[-15%] left-[26%] transform -translate-x-1/2 w-[400px] z-0">
+
+    <!-- Tablet & Mobile: smaller login image bottom-left -->
+    <img src="{{ asset('assets/images/login2.png') }}" 
+        alt="Login" 
+        class="md:w-[220px] md:block lg:hidden absolute bottom-[-17%] left-[4%] hidden z-0">
 @endsection
 
 @section('content')
-<div class="w-full flex min-h-[80vh] relative">
+<div class="w-full flex flex-col lg:flex-row min-h-[80vh] md:h-auto relative">
     <!-- Left Side Images -->
-    <div class="w-1/2 flex justify-center items-center relative">
-        <div class="w-[90%] h-full rounded-lg p-6 relative overflow-hidden">
+    <div class="w-full lg:w-1/2 flex justify-center items-center relative order-1 lg:order-none">
+        <div class="w-[90%] h-full rounded-lg p-6 relative overflow-hidden flex justify-center">
+            
             <img src="{{ asset('assets/images/stair.png') }}" alt="Stair" 
-                class="absolute top-[10%] left-[10%] w-[120px]">
+                class="hidden lg:block absolute top-[10%] left-[10%] w-[120px]">
             <img src="{{ asset('assets/images/periwrinkle.png') }}" alt="Periwinkle" 
-                class="absolute top-[20%] left-[70%] w-[120px]">
+                class="hidden lg:block absolute top-[20%] left-[70%] w-[120px]">
             <img src="{{ asset('assets/images/star.png') }}" alt="Star" 
-                class="absolute top-[70%] right-[10%] w-[80px]">
+                class="hidden lg:block absolute top-[70%] right-[10%] w-[80px]">
             <img src="{{ asset('assets/images/star.png') }}" alt="Star" 
-                class="absolute top-[85%] right-[10%] w-[20px]">
+                class="hidden lg:block absolute top-[85%] right-[10%] w-[20px]">
             <img src="{{ asset('assets/images/Tube.png') }}" alt="Tube" 
-                class="absolute top-[85%] right-[75%] w-[80px]">
+                class="hidden lg:block absolute top-[85%] right-[75%] w-[80px]">
         </div>
     </div>
+    {{-- Tablet & Mobile Layout --}}
+    <img src="{{ asset('assets/images/stair.png') }}" alt="Stair" 
+        class="block lg:hidden absolute top-[5%] left-[15%] w-[70px] md:w-[90px] opacity-90">
+    <img src="{{ asset('assets/images/periwrinkle.png') }}" alt="Periwinkle" 
+        class="block lg:hidden absolute top-[10%] right-[12%] w-[90px] md:w-[110px] opacity-90">
+    <img src="{{ asset('assets/images/star.png') }}" alt="Star" 
+        class="block lg:hidden absolute bottom-[18%] right-[20%] w-[50px] md:w-[100px] opacity-80 z-[-20]">
+    <img src="{{ asset('assets/images/periwrinkle.png') }}" alt="Tube" 
+        class="block lg:hidden absolute bottom-[5%] md:bottom-0 md:left-[50%] left-[10%] w-[100px] md:w-[130px] opacity-80">
+
 
     <!-- Login Form -->
-    <div class="w-1/2 flex justify-center items-center">
+    <div class="w-full lg:w-1/2 flex justify-center items-center mt-2 md:mt-4 lg:mt-0">
         <div class="w-[90%] h-full rounded-lg p-6 pt-0">
-            <div x-data="{ role: 'student' }" class="mt-10 px-24 w-full">
+            <div x-data="{ role: 'student' }" class="mt-6 md:mt-10 px-4 md:px-16 lg:px-24 w-full">
                 
                 @if (session('status'))
                     <div class="mb-4 text-sm text-green-600 text-center">
@@ -37,7 +54,8 @@
                     </div>
                 @endif
 
-                <h2 class="text-[28px] font-bold text-[#111827] text-center mb-10" style="font-family: 'Poppins', sans-serif;">
+                <h2 class="text-[24px] md:text-[28px] font-bold text-[#111827] text-center mb-8 md:mb-10" 
+                    style="font-family: 'Poppins', sans-serif;">
                     Login
                 </h2>
 
@@ -57,7 +75,7 @@
                     </button>
                 </div>
 
-                <div class="relative overflow-hidden mb-0 h-[300px] md:h-[350px]">
+                <div class="relative overflow-hidden mb-0 h-[360px] md:h-[350px]">
                     
                     <!-- STUDENT FORM -->
                     <form 
@@ -139,10 +157,12 @@
                             </button>
                         </div>
 
-                        <!-- Google icon (Teacher only) -->
+                        <!-- Login with Google (Teacher only) -->
                         <div class="mt-4 flex justify-center">
                             <div class="w-10 h-10 bg-[#DBEAFE] rounded-full flex items-center justify-center">
-                                <i class="ri-google-fill text-[#3B82F6] text-[20px]"></i>
+                                <a href="{{ route('auth.google') }}">
+                                    <i class="ri-google-fill text-[#3B82F6] text-[20px]"></i>
+                                </a>
                             </div>
                         </div>
                     </form>
@@ -156,6 +176,5 @@
             </div>
         </div>
     </div>
-
 </div>
 @endsection

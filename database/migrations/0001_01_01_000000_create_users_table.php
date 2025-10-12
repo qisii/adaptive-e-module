@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('username', 20)->nullable()->unique();
             $table->string('email')->nullable()->unique();
             $table->longText('avatar')->nullable();
@@ -22,8 +22,11 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('state_country')->nullable();
             $table->unsignedBigInteger('role_id')->comment('1: admin, 2: student');
+            $table->string('google_id')->nullable()->unique();
+            $table->text('google_token')->nullable();
+            $table->text('google_refresh_token')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->timestamps();
         });
 
