@@ -23,10 +23,18 @@ Route::get('/dashboard', function () {
 Route::get('/auth/google', [SocialiteController::class, 'googleLogin'])->name('auth.google');
 Route::get('/auth/google-callback', [SocialiteController::class, 'googleAuthentication'])->name('auth.google-callback');
 
-Route::middleware('auth')->group(function () {
+Route::group(['middleware' => 'auth'], function(){
     Route::get('/profile/show', [ProfileController::class, 'show'])->name('profile.show'); // add {id}
     // Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
     Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile/avatar/destroy', [ProfileController::class, 'destroyAvatar'])->name('profile.avatar.destroy'); // to be continued
+
+    # ADMIN
+    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
+        Route::get('/profile/show', [ProfileController::class, 'show'])->name('profile.show');
+        // Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile/avatar/destroy', [ProfileController::class, 'destroyAvatar'])->name('profile.avatar.destroy'); // to be continued
+    });
 });
 
 require __DIR__.'/auth.php';

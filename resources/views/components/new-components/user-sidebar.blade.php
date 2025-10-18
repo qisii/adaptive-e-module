@@ -35,16 +35,6 @@
                 </a>
                 <a href="#" 
                     class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 
-                    text-[#E5E7EB] hover:bg-[#0F2250] hover:text-blue-300 @yield('data-active')">
-                    <i class="ri-database-2-line text-[16px]"></i> Data
-                </a>
-                <a href="#" 
-                    class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 
-                    text-[#E5E7EB] hover:bg-[#0F2250] hover:text-blue-300 @yield('analysis-active')">
-                    <i class="ri-bar-chart-line"></i> Analysis
-                </a>
-                <a href="#" 
-                    class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 
                     text-[#E5E7EB] hover:bg-[#0F2250] hover:text-blue-300 @yield('comment-active')">
                     <i class="ri-chat-1-line text-[16px]"></i> Comments & Suggestions
                 </a>
@@ -57,9 +47,9 @@
                 class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-[#0F2250] hover:text-blue-300 transition-all duration-200">
                 <i class="ri-question-line"></i> Help
             </a>
-            <form method="POST" action="{{ route('logout') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-[#0F2250] hover:text-[#EF4444] transition-all duration-200">
+            <form method="POST" action="{{ route('logout') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-[#0F2250] hover:text-[#EF4444] transition-all duration-200 cursor-pointer">
                 @csrf
-                <button type="submit">
+                <button type="submit" class="cursor-pointer">
                     <i class="ri-arrow-right-circle-line mr-2"></i> Logout
                 </button>
             </form>
@@ -70,7 +60,7 @@
     <div 
         x-show="sidebarOpen" 
         @click="sidebarOpen = false" 
-        class="fixed inset-0 bg-black bg-opacity-40 z-30 lg:hidden"
+        class="fixed inset-0 bg-black/50 z-30 lg:hidden"
     ></div>
 </div>
 

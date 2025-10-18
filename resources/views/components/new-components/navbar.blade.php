@@ -6,7 +6,7 @@
         {{-- Left side: Logo --}}
         <div class="flex items-center">
             <h1 
-                class="text-lg sm:text-xl md:text-2xl font-bold text-blue-900 truncate max-w-[200px] sm:max-w-none"
+                class="text-lg sm:text-xl lg:text-2xl font-bold text-blue-900 truncate max-w-[200px] sm:max-w-none"
                 style="font-family: 'Poppins', sans-serif;"
             >
                 {{ config('app.name') }}

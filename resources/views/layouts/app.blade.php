@@ -28,18 +28,24 @@
     class="bg-[#F9FAFB] text-gray-900 min-h-screen flex m-0 p-0"
 >
     <!-- Sidebar -->
-    <x-new-components.sidebar />
+    @if (Auth::user()->role_id == 1)
+        <x-new-components.admin-sidebar />
+    @else
+        <x-new-components.user-sidebar />
+    @endif
+    
 
     <!-- Main Content -->
     <main class="flex-1 flex flex-col overflow-y-auto">
         <!-- Header -->
-        <header class="bg-white shadow-sm py-5 px-9 flex items-center justify-between sticky top-0 z-10">
+        <header class="bg-white shadow-sm py-5 px-4 lg:px-10 md:px-10 flex items-center justify-between sticky top-0 z-10">
             <div class="flex items-center gap-3">
                 <!-- Burger Button (Visible on Mobile/Tablet only) -->
                 <button 
                     @click="sidebarOpen = !sidebarOpen" 
-                    class="lg:hidden bg-[#0B1A3F] text-white p-2 rounded-md focus:outline-none"
+                    class="lg:hidden text-[#0B1A3F] fw-bold"
                 >
+                {{-- class="lg:hidden bg-[#0B1A3F] text-white p-2 rounded-md focus:outline-none" --}}
                     <i class="ri-menu-line text-xl"></i>
                 </button>
                 
@@ -50,7 +56,7 @@
         </header>
 
         <!-- Page Content -->
-        <div class="flex-1 bg-[#F3F4F6]">
+        <div class="flex-1 bg-[#F3F4F6] min-h-screen overflow-auto">
             @yield('content')
         </div>
     </main>

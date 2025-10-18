@@ -47,6 +47,6 @@ class SocialiteController extends Controller
         // dd($user);
         Auth::login($user);
     
-        return redirect('/profile/show');
+        return redirect('/admin/profile/show');
     }
 }

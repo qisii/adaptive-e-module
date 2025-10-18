@@ -29,7 +29,6 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        // dd($request->all());
         $rules = [
             'role_id' => ['required', 'in:1,2'],
             'username' => ['nullable', 'string', 'max:20', 'unique:users,username'],
@@ -47,10 +46,30 @@ class RegisteredUserController extends Controller
             $rules['student_first_name'] = ['required', 'string', 'max:255'];
             $rules['student_last_name']  = ['required', 'string', 'max:255'];
             $rules['email'] = ['nullable', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'];
+            $rules['username'] = ['required', 'string', 'max:20', 'unique:users,username'];
             $rules['student_password'] = ['required', Rules\Password::defaults()];
         }
 
-        $validated = $request->validate($rules);
+        // Custom error message
+        $messages = [
+            'student_first_name.required' => 'The first name field is required.',
+            'teacher_first_name.required' => 'The first name field is required.',
+
+            'student_last_name.required' => 'The last name field is required.',
+            'teacher_last_name.required' => 'The last name field is required.',
+
+            'student_password.required' => 'The password field is required.',
+            'teacher_password.required' => 'The password field is required.',
+
+            'email.required' => 'The email field is required.',
+            'email.email' => 'Please enter a valid email address.',
+            'username.unique' => 'The username has already been taken.',
+            'username.required' => 'The username is required.',
+            'email.unique' => 'The email has already been taken.',
+            'role_id.required' => 'Please select a role.',
+        ];
+
+        $validated = $request->validate($rules, $messages);
 
         // Assign variables based on role
         if ($request->role_id == 1) {
@@ -77,6 +96,11 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('profile.show');
+        // Redirect based on role
+        if ($user->role_id == 1) {
+            return redirect()->route('admin.profile.show');
+        } else {
+            return redirect()->route('profile.show');
+        }
     }
 }

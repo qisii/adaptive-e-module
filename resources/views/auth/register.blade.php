@@ -45,7 +45,7 @@
         {{-- Register Form --}}
         <div class="w-full lg:w-1/2 flex justify-center items-center mt-2 md:mt-4 lg:mt-0 z-15">
         <div class="w-[90%] h-full rounded-lg p-6 pt-0">
-            <div x-data="{ role: 'student' }" class="mt-6 md:mt-10 px-4 md:px-16 lg:px-24 w-full">
+            <div x-data="{ role: 'student' }" class="mt-0 md:mt-10 px-4 md:px-16 lg:px-24 w-full">
                     
                     <h2 class="text-[24px] md:text-[28px] font-bold text-[#111827] text-center mb-8 md:mb-10" 
                         style="font-family: 'Poppins', sans-serif;">
@@ -68,7 +68,7 @@
                         </button>
                     </div>
 
-                    <div class="relative overflow-hidden mb-0 h-[360px] md:h-[350px]">
+                    <div class="relative overflow-hidden mb-0 h-[372px] lg:h-[373px] md:h-[370px]">
                         
                         <!-- STUDENT FORM -->
                         <form 
@@ -81,39 +81,105 @@
                             x-transition:leave-end="opacity-0 -translate-y-2"
                             action="{{ route('register') }}" 
                             method="POST"
-                            class="absolute inset-0 flex-col justify-center px-2 pt-4"
+                            class="absolute inset-0 flex-col justify-center px-2 pt-6"
                         >
                             @csrf
 
-                            <div class="mb-4 flex gap-4">
-                                <input type="text" name="student_first_name" placeholder="First Name"
-                                    value="{{ old('student_first_name') }}"
-                                    class="w-1/2 p-4 bg-[#F3F4F6] focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full"
-                                    style="font-family: 'Inter', sans-serif;" required>
-                                <input type="text" name="student_last_name" placeholder="Last Name"
-                                    value="{{ old('student_last_name') }}"
-                                    class="w-1/2 p-4 bg-[#F3F4F6] focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full"
-                                    style="font-family: 'Inter', sans-serif;" required>
+                            <div class="mb-5 flex gap-4">
+                                <div class="relative w-1/2">
+                                    <input 
+                                        id="student-first-name"
+                                        type="text" 
+                                        name="student_first_name" 
+                                        value="{{ old('student_first_name') }}"
+                                        placeholder="First Name"
+                                        class="w-full p-4 bg-[#F3F4F6] text-[14px] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500
+                                            @error('student_first_name') border border-red-500 @enderror"
+                                        style="font-family: 'Poppins', sans-serif;"
+                                        autofocus
+                                    >
+
+                                    @error('student_first_name')
+                                        <span 
+                                            class="absolute left-0 top-full mt-1 text-red-500 text-[11px] whitespace-nowrap"
+                                            style="font-family: 'Poppins', sans-serif;">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <div class="relative w-1/2">
+                                    <input 
+                                        id="student-last-name"
+                                        type="text" 
+                                        name="student_last_name" 
+                                        value="{{ old('student_last_name') }}"
+                                        placeholder="Last Name"
+                                        class="w-full p-4 bg-[#F3F4F6] text-[14px] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500
+                                            @error('student_last_name') border border-red-500 @enderror"
+                                        style="font-family: 'Poppins', sans-serif;"
+                                        
+                                    >
+
+                                    @error('student_last_name')
+                                        <span 
+                                            class="absolute left-0 top-full mt-1 text-red-500 text-[11px] whitespace-nowrap"
+                                            style="font-family: 'Poppins', sans-serif;">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
 
-                            <div class="mb-4">
-                                <input type="text" name="username" placeholder="Username"
+                            <div class="relative mb-5">
+                                <input 
+                                    id="username" 
+                                    type="text" 
+                                    name="username" 
                                     value="{{ old('username') }}"
-                                    class="w-full p-4 bg-[#F3F4F6] focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full"
-                                    style="font-family: 'Inter', sans-serif;" required>
+                                    placeholder="Username"
+                                    class="w-full p-4 bg-[#F3F4F6] text-[14px] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 
+                                        @error('username') border border-red-500 @enderror"
+                                    style="font-family: 'Poppins', sans-serif;"  
+                                    
+                                >
+
+                                @error('username')
+                                    <span 
+                                        class="absolute left-0 top-full mt-1 text-red-500 text-[11px] whitespace-nowrap"
+                                        style="font-family: 'Poppins', sans-serif;">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
 
-                            <div class="mb-4">
-                                <input type="password" name="student_password" placeholder="Password"
-                                    class="w-full p-4 bg-[#F3F4F6] focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full"
-                                    style="font-family: 'Inter', sans-serif;" required>
+                            <div class="relative mb-10">
+                                <input 
+                                    id="student-password" 
+                                    type="password" 
+                                    name="student_password" 
+                                    value="{{ old('student_password') }}"
+                                    placeholder="Password"
+                                    class="w-full p-4 bg-[#F3F4F6] text-[14px] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 
+                                        @error('student_password') border border-red-500 @enderror"
+                                    style="font-family: 'Poppins', sans-serif;"  
+                                    
+                                >
+
+                                @error('student_password')
+                                    <span 
+                                        class="absolute left-0 top-full mt-1 text-red-500 text-[11px] whitespace-nowrap"
+                                        style="font-family: 'Poppins', sans-serif;">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
 
                             <input type="hidden" name="role_id" value="2">
 
                             <div class="px-1">
                                 <button type="submit"
-                                    class="w-full py-4 bg-[#1E40AF] text-[#F9FAFB] font-semibold rounded-full hover:bg-blue-900 transition duration-200"
+                                    class="w-full py-4 text-[14px] bg-[#1E40AF] text-[#F9FAFB] font-semibold rounded hover:bg-blue-900 transition duration-200"
                                     style="font-family: 'Inter', sans-serif;">
                                     Signup
                                 </button>
@@ -131,39 +197,105 @@
                             x-transition:leave-end="opacity-0 -translate-y-2"
                             action="{{ route('register') }}" 
                             method="POST"
-                            class="absolute inset-0 flex flex-col justify-center px-2 pt-4"
+                            class="absolute inset-0 flex flex-col justify-center px-2 pt-6"
                         >
                             @csrf
 
-                            <div class="mb-4 flex gap-4">
-                                <input type="text" name="teacher_first_name" placeholder="First Name"
-                                    value="{{ old('teacher_first_name') }}"
-                                    class="w-1/2 p-4 bg-[#F3F4F6] focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full"
-                                    style="font-family: 'Inter', sans-serif;" required>
-                                <input type="text" name="teacher_last_name" placeholder="Last Name"
-                                    value="{{ old('teacher_last_name') }}"
-                                    class="w-1/2 p-4 bg-[#F3F4F6] focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full"
-                                    style="font-family: 'Inter', sans-serif;" required>
+                            <div class="mb-5 flex gap-4">
+                                <div class="relative w-1/2">
+                                    <input 
+                                        id="teacher-first-name"
+                                        type="text" 
+                                        name="teacher_first_name" 
+                                        value="{{ old('teacher_first_name') }}"
+                                        placeholder="First Name"
+                                        class="w-full p-4 bg-[#F3F4F6] text-[14px] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500
+                                            @error('teacher_first_name') border border-red-500 @enderror"
+                                        style="font-family: 'Poppins', sans-serif;"
+                                        autofocus
+                                    >
+
+                                    @error('teacher_first_name')
+                                        <span 
+                                            class="absolute left-0 top-full mt-1 text-red-500 text-[11px] whitespace-nowrap"
+                                            style="font-family: 'Poppins', sans-serif;">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <div class="relative w-1/2">
+                                    <input 
+                                        id="teacher-last-name"
+                                        type="text" 
+                                        name="teacher_last_name" 
+                                        value="{{ old('teacher_last_name') }}"
+                                        placeholder="Last Name"
+                                        class="w-full p-4 bg-[#F3F4F6] text-[14px] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500
+                                            @error('teacher_last_name') border border-red-500 @enderror"
+                                        style="font-family: 'Poppins', sans-serif;"
+                                        
+                                    >
+
+                                    @error('teacher_last_name')
+                                        <span 
+                                            class="absolute left-0 top-full mt-1 text-red-500 text-[11px] whitespace-nowrap"
+                                            style="font-family: 'Poppins', sans-serif;">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
 
-                            <div class="mb-4">
-                                <input type="email" name="email" placeholder="Email"
+                            <div class="relative mb-5">
+                                <input 
+                                    id="email" 
+                                    type="email" 
+                                    name="email" 
                                     value="{{ old('email') }}"
-                                    class="w-full p-4 bg-[#F3F4F6] focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full"
-                                    style="font-family: 'Inter', sans-serif;" required>
+                                    placeholder="Email Address"
+                                    class="w-full p-4 bg-[#F3F4F6] text-[14px] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 
+                                        @error('email') border border-red-500 @enderror"
+                                    style="font-family: 'Poppins', sans-serif;"  
+                                    
+                                >
+
+                                @error('email')
+                                    <span 
+                                        class="absolute left-0 top-full mt-1 text-red-500 text-[11px] whitespace-nowrap"
+                                        style="font-family: 'Poppins', sans-serif;">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
 
-                            <div class="mb-4">
-                                <input type="password" name="teacher_password" placeholder="Password"
-                                    class="w-full p-4 bg-[#F3F4F6] focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full"
-                                    style="font-family: 'Inter', sans-serif;" required>
+                            <div class="relative mb-10">
+                                <input 
+                                    id="teacher-password" 
+                                    type="password" 
+                                    name="teacher_password" 
+                                    value="{{ old('teacher_password') }}"
+                                    placeholder="Password"
+                                    class="w-full p-4 bg-[#F3F4F6] text-[14px] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 
+                                        @error('teacher_password') border border-red-500 @enderror"
+                                    style="font-family: 'Poppins', sans-serif;"  
+                                    
+                                >
+
+                                @error('teacher_password')
+                                    <span 
+                                        class="absolute left-0 top-full mt-1 text-red-500 text-[11px] whitespace-nowrap"
+                                        style="font-family: 'Poppins', sans-serif;">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
 
                             <input type="hidden" name="role_id" value="1">
 
                             <div class="px-1">
                                 <button type="submit"
-                                    class="w-full py-4 bg-[#1E40AF] text-[#F9FAFB] font-semibold rounded-full hover:bg-blue-900 transition duration-200"
+                                    class="w-full py-4 text-[14px] bg-[#1E40AF] text-[#F9FAFB] font-semibold rounded hover:bg-blue-900 transition duration-200"
                                     style="font-family: 'Inter', sans-serif;">
                                     Signup
                                 </button>
@@ -181,7 +313,7 @@
 
                     </div>
 
-                    <p class="text-[14px] text-[#6B7280] text-center mt-4" style="font-family: 'Poppins', sans-serif;">
+                    <p class="text-[14px] text-[#6B7280] text-center mt-7" style="font-family: 'Poppins', sans-serif;">
                         Already have an account? 
                         <a href="{{ route('login') }}" class="text-[#1E40AF] font-bold">Login</a>
                     </p>

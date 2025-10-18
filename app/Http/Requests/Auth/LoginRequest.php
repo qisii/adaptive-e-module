@@ -38,7 +38,7 @@ class LoginRequest extends FormRequest
             // Teacher
             return [
                 'email' => ['required', 'string', 'email'],
-                'password' => ['required', 'string'],
+                'teacher_password' => ['required', 'string'],
             ];
         } else {
             // Student
@@ -80,7 +80,7 @@ class LoginRequest extends FormRequest
             // Teacher login uses email
             $credentials = [
                 'email' => $this->input('email'),
-                'password' => $this->input('password'),
+                'password' => $this->input('teacher_password'),
                 'role_id' => 1,
             ];
         } else {
@@ -101,6 +101,7 @@ class LoginRequest extends FormRequest
         }
 
         RateLimiter::clear($this->throttleKey());
+        
     }
 
     /**

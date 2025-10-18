@@ -1,0 +1,86 @@
+I am creating a website for adaptive module for students. I need help in creating migrations and the relationships.
+
+A module has 3 folders: pre-test, quiz, and post-test.  For each question, the teacher can add up to 4 choices. 
+
+Pretest -> the admin can create many questionnaires and can add many questions. The student will answer one questionnaire only which the system will randomly assign. Purpose of this is to assign the level of the student for the quiz. Store the score of the student with the number of tries.
+Quiz -> The students is given a quiz base on its score. The level depends on the score the student. (e.g., Beginner is 5, Intermediate is 10, Advanced is 15). the admin can create many questionnaires and can add many questions.  The student will answer one questionnaire only which the system will randomly assign. Store the score of the student with the number of tries.
+Post-test -> The same structure as pre-test - to evaluate retention. The questions here are randomly gathered from the questionnaires that the student had in pre-test and quiz. Store the score of the student with the number of tries. 
+
+After post-test, they are given the option if they want to take a test again. If YES, then they will go back to Pre-test and then the same process.
+
+
+
+I believe I will be having a lot of many to many relationships. Please follow this way of adding the many to many relationship using a pivot table.
+
+
+can i use the normal many to many relationship. Like for example this code:
+
+A post can have many categories and a category can belong to many posts.
+
+Post.php:
+
+// To get the categories under a post
+    public function categoryPost(){
+        return $this->hasMany(CategoryPost::class);
+
+        /*
+            $post = $this->post->findOrFail(2);
+            $post->categoryPost;
+        */
+    }
+
+CategoryPost.php:
+
+protected $table = 'category_post';
+    protected $fillable = ['category_id', 'post_id']; // allow mass assignment
+    public $timestamps = false;
+
+    // To get the name of the category
+    public function category(){
+        return $this->belongsTo(Category::class);
+        /*
+            $categoryPost = $this->category->findOrFail(2);
+            $categoryPost->category->name; // "Food"
+        */
+    }
+
+
+create_category_post_table.php:
+
+public function up(): void
+    {
+        Schema::create('category_post', function (Blueprint $table) {
+            $table->unsignedBigInteger('post_id');
+            $table->unsignedBigInteger('category_id');
+
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+        });
+    }
+
+
+PostController.php:
+
+ public function store(Request $request){
+        # 1. Validate all form data
+        $request->validate([
+            'category'      => 'required|array|between:1,3', // between will check the number of items in an array.
+            'description'   => 'required|min:1|max:1000',
+            'image'         => 'required|mimes:jpeg,jpg,png,gif|max:1048'
+        ]);
+
+        # 2. Save the post
+        $this->post->user_id        = Auth::user()->id;
+        $this->post->image          = 'data:image/' . $request->image->extension() . ';base64,' . base64_encode(file_get_contents($request->image));
+        $this->post->description    = $request->description;
+        $this->post->save();
+
+        # 3. Save the categories to the category_post table
+        foreach($request->category as $category_id){
+            $category_post[] = ['category_id' => $category_id];
+        }
+        $this->post->categoryPost()->createMany($category_post);
+
+        # 4. Go back to homepage
+        return redirect()->route('index');
+    }

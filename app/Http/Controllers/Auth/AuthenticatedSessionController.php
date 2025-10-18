@@ -28,18 +28,50 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('profile.show', absolute: false));
+        $user = Auth::user();
+
+        if ($user->role_id == 1) {
+            // Admin
+            return redirect()->intended(route('admin.profile.show', absolute: false));
+        } else {
+            // Regular User / Student
+            return redirect()->intended(route('profile.show', absolute: false));
+        }
     }
+
+    /*
+        I am using laravel breeze as my default login and registration system. I have 2 user roles: Admin, User. I am using Aphine JS to display the inputs using Toogleable Tabs. Now, I have an error with displaying the @error message since i have 2 password inputs. Is it possible to create a variable to store the role_is and then use it for condition?
+
+        If role_id is 1, it should display the @error in teacher_password
+        If role_id is 2, it should display the @error in teacher_password
+    */
+
 
     /**
      * Destroy an authenticated session.
      */
+    // public function destroy(Request $request): RedirectResponse
+    // {
+    //     Auth::guard('web')->logout();
+
+    //     $request->session()->invalidate();
+
+    //     $request->session()->regenerateToken();
+
+    //     return redirect('/');
+    // }
+
     public function destroy(Request $request): RedirectResponse
     {
+        $user = Auth::user();
+
+        if (empty($user->password)) {
+            return back()->with('password', 'You cannot logout without setting a password.');
+        }
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
         return redirect('/');
